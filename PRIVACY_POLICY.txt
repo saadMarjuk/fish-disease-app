@@ -1,0 +1,15 @@
+Privacy Policy for Fish Disease Detection
+
+This application is an academic research prototype built for educational and demonstration purposes.
+
+1. Data Collection & Use
+
+We collect email addresses solely to manage user accounts and enable login functionality using Firebase Authentication. No other personal data, location data, or device analytics are tracked.
+
+2. Data Protection & Sharing
+
+All login credentials are encrypted in transit and handled securely by Google Firebase. We do not sell, rent, trade, or share your account information with any third parties or advertising networks.
+
+3. Data Retention & Deletion
+
+Your authentication data is kept only as long as your account remains active. If you wish to delete your account or remove your registered email address, you can contact the developer directly through this GitHub repository.
