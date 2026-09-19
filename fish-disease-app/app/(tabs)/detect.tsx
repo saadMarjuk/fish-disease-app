@@ -17,7 +17,6 @@ import { useAuth } from '../../context/AuthContext';
 
 type FishType = 'tilapia' | 'shrimp' | 'salmon' | null;
 
-// Put your computer local IP here
 const API_BASE_URL = 'https://saad-marjuk-fish-disease-detect-app.hf.space';
 
 export default function DetectScreen() {
@@ -47,24 +46,21 @@ export default function DetectScreen() {
   ] as const;
 
   const pickImageFromGallery = async () => {
-    const permissionResult =
-      await ImagePicker.requestMediaLibraryPermissionsAsync();
+    try {
+      const pickerResult = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ['images'] as any,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
 
-    if (!permissionResult.granted) {
-      Alert.alert('Permission needed', 'Please allow gallery access first.');
-      return;
-    }
-
-    const pickerResult = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images'] as any,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!pickerResult.canceled) {
-      setSelectedImage(pickerResult.assets[0].uri);
-      setResult(null);
+      if (!pickerResult.canceled) {
+        setSelectedImage(pickerResult.assets[0].uri);
+        setResult(null);
+      }
+    } catch (error) {
+      console.log('Image picker error:', error);
+      Alert.alert('Error', 'Unable to open image gallery.');
     }
   };
 
@@ -149,6 +145,7 @@ export default function DetectScreen() {
       const lowerFileName = fileName.toLowerCase();
 
       let fileType = 'image/jpeg';
+
       if (lowerFileName.endsWith('.png')) {
         fileType = 'image/png';
       } else if (
@@ -159,28 +156,45 @@ export default function DetectScreen() {
       }
 
       const formData = new FormData();
-      formData.append('file', {
-        uri: selectedImage,
-        name: fileName,
-        type: fileType,
-      } as any);
 
-      const response = await fetch(`${API_BASE_URL}/predict/${selectedFish}`, {
-        method: 'POST',
-        body: formData,
-      });
+      formData.append(
+        'file',
+        {
+          uri: selectedImage,
+          name: fileName,
+          type: fileType,
+        } as any
+      );
+
+      const response = await fetch(
+        `${API_BASE_URL}/predict/${selectedFish}`,
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data?.detail || data?.message || 'Prediction failed');
+        throw new Error(
+          data?.detail ||
+            data?.message ||
+            'Prediction failed'
+        );
       }
 
       const diseaseName = getPredictionLabel(data);
       const confidence = getConfidenceValue(data);
-      const description = data?.description || 'No description available.';
-      const treatment = data?.treatment || 'No treatment advice available.';
-      const prevention = data?.prevention || 'No prevention advice available.';
+
+      const description =
+        data?.description || 'No description available.';
+
+      const treatment =
+        data?.treatment || 'No treatment advice available.';
+
+      const prevention =
+        data?.prevention || 'No prevention advice available.';
 
       let finalText = `Disease: ${diseaseName}`;
 
@@ -195,7 +209,8 @@ export default function DetectScreen() {
       await saveHistory({
         fishType: selectedFish,
         diseaseName,
-        confidence: confidence !== null ? Number(confidence) : null,
+        confidence:
+          confidence !== null ? Number(confidence) : null,
         description,
         treatment,
         prevention,
@@ -203,7 +218,10 @@ export default function DetectScreen() {
 
       setResult(finalText);
     } catch (error: any) {
-      Alert.alert('Detection failed', error?.message || 'Network error');
+      Alert.alert(
+        'Detection failed',
+        error?.message || 'Network error'
+      );
     } finally {
       setLoading(false);
     }
@@ -211,8 +229,13 @@ export default function DetectScreen() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Detect Fish Disease</Text>
-      <Text style={styles.subtitle}>Select fish type before detection</Text>
+      <Text style={styles.title}>
+        Detect Fish Disease
+      </Text>
+
+      <Text style={styles.subtitle}>
+        Select fish type before detection
+      </Text>
 
       <View style={styles.fishRow}>
         {fishOptions.map((fish) => {
@@ -221,11 +244,18 @@ export default function DetectScreen() {
           return (
             <TouchableOpacity
               key={fish.key}
-              style={[styles.fishCard, isSelected && styles.selectedFishCard]}
+              style={[
+                styles.fishCard,
+                isSelected && styles.selectedFishCard,
+              ]}
               onPress={() => setSelectedFish(fish.key)}
               activeOpacity={0.85}
             >
-              <Image source={fish.image} style={styles.fishImage} />
+              <Image
+                source={fish.image}
+                style={styles.fishImage}
+              />
+
               <Text
                 style={[
                   styles.fishLabel,
@@ -241,9 +271,14 @@ export default function DetectScreen() {
 
       <View style={styles.previewBox}>
         {selectedImage ? (
-          <Image source={{ uri: selectedImage }} style={styles.previewImage} />
+          <Image
+            source={{ uri: selectedImage }}
+            style={styles.previewImage}
+          />
         ) : (
-          <Text style={styles.previewText}>No image selected</Text>
+          <Text style={styles.previewText}>
+            No image selected
+          </Text>
         )}
       </View>
 
@@ -251,32 +286,47 @@ export default function DetectScreen() {
         style={styles.uploadButton}
         onPress={pickImageFromGallery}
       >
-        <Text style={styles.uploadButtonText}>Choose Image</Text>
+        <Text style={styles.uploadButtonText}>
+          Choose Image
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[styles.detectButton, loading && styles.disabledButton]}
+        style={[
+          styles.detectButton,
+          loading && styles.disabledButton,
+        ]}
         onPress={handleDetect}
         disabled={loading}
       >
         {loading ? (
           <ActivityIndicator color="#FFFFFF" />
         ) : (
-          <Text style={styles.detectButtonText}>Detect Disease</Text>
+          <Text style={styles.detectButtonText}>
+            Detect Disease
+          </Text>
         )}
       </TouchableOpacity>
 
       <View style={styles.resultCard}>
-        <Text style={styles.resultTitle}>Prediction Result</Text>
+        <Text style={styles.resultTitle}>
+          Prediction Result
+        </Text>
 
         {selectedFish ? (
-          <Text style={styles.resultText}>Fish Type: {selectedFish}</Text>
+          <Text style={styles.resultText}>
+            Fish Type: {selectedFish}
+          </Text>
         ) : (
-          <Text style={styles.resultPlaceholder}>No fish selected</Text>
+          <Text style={styles.resultPlaceholder}>
+            No fish selected
+          </Text>
         )}
 
         {result ? (
-          <Text style={styles.resultText}>{result}</Text>
+          <Text style={styles.resultText}>
+            {result}
+          </Text>
         ) : (
           <Text style={styles.resultPlaceholder}>
             Detection result will appear here
@@ -294,6 +344,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F7FA',
     flexGrow: 1,
   },
+
   title: {
     fontSize: 28,
     fontWeight: 'bold',
@@ -301,6 +352,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
+
   subtitle: {
     fontSize: 15,
     textAlign: 'center',
@@ -308,11 +360,13 @@ const styles = StyleSheet.create({
     color: '#666',
     marginTop: 6,
   },
+
   fishRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 22,
   },
+
   fishCard: {
     width: '31%',
     backgroundColor: '#FFFFFF',
@@ -324,24 +378,29 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
     elevation: 3,
   },
+
   selectedFishCard: {
     borderColor: '#2F80ED',
     backgroundColor: '#EAF3FF',
   },
+
   fishImage: {
     width: 58,
     height: 58,
     resizeMode: 'contain',
     marginBottom: 8,
   },
+
   fishLabel: {
     fontSize: 14,
     fontWeight: '600',
     color: '#333',
   },
+
   selectedFishLabel: {
     color: '#2F80ED',
   },
+
   previewBox: {
     width: '100%',
     height: 240,
@@ -352,15 +411,18 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginBottom: 18,
   },
+
   previewImage: {
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
   },
+
   previewText: {
     fontSize: 16,
     color: '#777',
   },
+
   uploadButton: {
     backgroundColor: '#2F80ED',
     paddingVertical: 14,
@@ -368,11 +430,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 12,
   },
+
   uploadButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
   },
+
   detectButton: {
     backgroundColor: '#111111',
     paddingVertical: 14,
@@ -380,32 +444,38 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 18,
   },
+
   disabledButton: {
     opacity: 0.7,
   },
+
   detectButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
   },
+
   resultCard: {
     backgroundColor: '#FFFFFF',
     padding: 18,
     borderRadius: 18,
     elevation: 2,
   },
+
   resultTitle: {
     fontWeight: 'bold',
     marginBottom: 10,
     fontSize: 18,
     color: '#1E1E1E',
   },
+
   resultText: {
     marginBottom: 8,
     fontSize: 15,
     color: '#333',
     lineHeight: 22,
   },
+
   resultPlaceholder: {
     color: '#888',
     fontSize: 15,

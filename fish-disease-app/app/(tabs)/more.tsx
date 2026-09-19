@@ -29,13 +29,16 @@ import {
 import { useRouter } from 'expo-router';
 import { auth, db } from '../../config/firebase';
 
+const PRIVACY_POLICY_URL =
+  'https://saadmarjuk.github.io/fish-disease-app/privacy-policy.html';
+
 const doctors = [
   {
     id: 1,
     name: 'DEMO DOCTOR(Dr. Rahman)',
     role: 'Fish Disease Specialist',
-    phone: '+8801700000001',
-    email: 'dr.rahman@fishcarebd.com',
+    phone: '+8801000000000',
+    email: 'demodr.rahman@fishcarebd.com',
     location: 'Farmgate, Dhaka, Bangladesh',
     image: require('../../assets/images/vet1.png'),
   },
@@ -43,8 +46,8 @@ const doctors = [
     id: 2,
     name: 'DEMO DOCTOR(Dr. Karim)',
     role: 'Aquaculture Health Consultant',
-    phone: '+8801700000002',
-    email: 'dr.karim@aquavetbd.com',
+    phone: '+8801000000000',
+    email: 'demodr.karim@aquavetbd.com',
     location: 'Agrabad, Chattogram, Bangladesh',
     image: require('../../assets/images/vet2.png'),
   },
@@ -52,8 +55,8 @@ const doctors = [
     id: 3,
     name: 'DEMO DOCTOR (Dr. Sultana)',
     role: 'Shrimp and Tilapia Expert',
-    phone: '+8801700000003',
-    email: 'dr.sultana@shrimphealthbd.com',
+    phone: '+8801000000000',
+    email: 'demodr.sultana@shrimphealthbd.com',
     location: 'Sonadanga, Khulna, Bangladesh',
     image: require('../../assets/images/vet3.png'),
   },
@@ -61,8 +64,8 @@ const doctors = [
     id: 4,
     name: 'DEMO DOCTOR(Dr. Hasan)',
     role: 'Fish Farm Treatment Advisor',
-    phone: '+8801700000004',
-    email: 'dr.hasan@fishsupportbd.com',
+    phone: '+8801000000000',
+    email: 'demodr.hasan@fishsupportbd.com',
     location: 'Shaheb Bazar, Rajshahi, Bangladesh',
     image: require('../../assets/images/vet4.png'),
   },
@@ -127,6 +130,17 @@ export default function MoreScreen() {
     }
   };
 
+  const openPrivacyPolicy = async () => {
+    try {
+      await Linking.openURL(PRIVACY_POLICY_URL);
+    } catch {
+      Alert.alert(
+        'Error',
+        'Privacy Policy could not be opened.'
+      );
+    }
+  };
+
   const handleDeleteAccount = async () => {
     const user = auth.currentUser;
 
@@ -146,7 +160,6 @@ export default function MoreScreen() {
     try {
       setDeletingAccount(true);
 
-      // Re-authenticate the user before deleting the account
       const credential = EmailAuthProvider.credential(
         user.email,
         deletePassword
@@ -154,7 +167,6 @@ export default function MoreScreen() {
 
       await reauthenticateWithCredential(user, credential);
 
-      // Delete all detection history
       const historyRef = collection(
         db,
         'users',
@@ -168,10 +180,8 @@ export default function MoreScreen() {
         await deleteDoc(historyDocument.ref);
       }
 
-      // Delete Firestore user document
       await deleteDoc(doc(db, 'users', user.uid));
 
-      // Delete Firebase Authentication account
       await deleteUser(user);
 
       setShowDeleteModal(false);
@@ -230,13 +240,13 @@ export default function MoreScreen() {
 
         <View style={styles.freeServiceCard}>
           <Text style={styles.freeServiceTitle}>
-            Free Veterinary Support
+            Demo Veterinary Support
           </Text>
 
           <Text style={styles.freeServiceText}>
-            Veterinary contact information is available free for all users.
-            Contact a specialist if you need help with fish disease, treatment,
-            or farm health.
+            The profiles and contact details below are sample data
+            for educational demonstration purposes only.
+            They do not represent real veterinary professionals.
           </Text>
         </View>
 
@@ -336,6 +346,26 @@ export default function MoreScreen() {
             name, description, treatment advice, prevention tips, and history for
             signed-in users.
           </Text>
+        </View>
+
+        <View style={styles.privacyCard}>
+          <Text style={styles.privacyTitle}>
+            Privacy & Data
+          </Text>
+
+          <Text style={styles.privacyText}>
+            Read how this app handles account information, fish images,
+            detection history, and other data.
+          </Text>
+
+          <TouchableOpacity
+            style={styles.privacyButton}
+            onPress={openPrivacyPolicy}
+          >
+            <Text style={styles.privacyButtonText}>
+              Privacy Policy
+            </Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.dangerCard}>
@@ -610,6 +640,41 @@ const styles = StyleSheet.create({
     color: '#444',
     lineHeight: 23,
     marginBottom: 8,
+  },
+
+  privacyCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 18,
+    padding: 16,
+    marginBottom: 16,
+    elevation: 2,
+  },
+
+  privacyTitle: {
+    fontSize: 19,
+    fontWeight: '700',
+    color: '#1E1E1E',
+    marginBottom: 8,
+  },
+
+  privacyText: {
+    fontSize: 14,
+    color: '#555',
+    lineHeight: 21,
+    marginBottom: 14,
+  },
+
+  privacyButton: {
+    backgroundColor: '#2F80ED',
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+
+  privacyButtonText: {
+    color: '#FFFFFF',
+    fontSize: 15,
+    fontWeight: '700',
   },
 
   dangerCard: {
