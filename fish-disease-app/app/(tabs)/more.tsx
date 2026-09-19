@@ -32,7 +32,7 @@ import { auth, db } from '../../config/firebase';
 const doctors = [
   {
     id: 1,
-    name: 'Dr. Rahman',
+    name: 'DEMO DOCTOR(Dr. Rahman)',
     role: 'Fish Disease Specialist',
     phone: '+8801700000001',
     email: 'dr.rahman@fishcarebd.com',
@@ -41,7 +41,7 @@ const doctors = [
   },
   {
     id: 2,
-    name: 'Dr. Karim',
+    name: 'DEMO DOCTOR(Dr. Karim)',
     role: 'Aquaculture Health Consultant',
     phone: '+8801700000002',
     email: 'dr.karim@aquavetbd.com',
@@ -50,7 +50,7 @@ const doctors = [
   },
   {
     id: 3,
-    name: 'Dr. Sultana',
+    name: 'DEMO DOCTOR (Dr. Sultana)',
     role: 'Shrimp and Tilapia Expert',
     phone: '+8801700000003',
     email: 'dr.sultana@shrimphealthbd.com',
@@ -59,7 +59,7 @@ const doctors = [
   },
   {
     id: 4,
-    name: 'Dr. Hasan',
+    name: 'DEMO DOCTOR(Dr. Hasan)',
     role: 'Fish Farm Treatment Advisor',
     phone: '+8801700000004',
     email: 'dr.hasan@fishsupportbd.com',
