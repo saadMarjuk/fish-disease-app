@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect } from 'expo-router';
 
 import { db } from '../../config/firebase';
 import { useAuth } from '../../context/AuthContext';
@@ -68,8 +68,11 @@ export default function HistoryScreen() {
     if (!createdAt) return 'Date unavailable';
 
     try {
-      if (createdAt?.toDate) {
+      if (typeof createdAt?.toDate === 'function') {
         return createdAt.toDate().toLocaleString();
+      }
+      if (createdAt instanceof Date) {
+        return createdAt.toLocaleString();
       }
       return 'Date unavailable';
     } catch {

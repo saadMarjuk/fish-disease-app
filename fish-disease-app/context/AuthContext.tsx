@@ -6,13 +6,11 @@ import React, {
   ReactNode,
 } from 'react';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
-import { auth, db } from '../config/firebase';
+import { auth } from '../config/firebase';
 
 type AuthContextType = {
   user: User | null;
   isLoggedIn: boolean;
-  isPremium: boolean;
   loading: boolean;
   logout: () => Promise<void>;
   refreshUserData: () => Promise<void>;
@@ -21,7 +19,6 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType>({
   user: null,
   isLoggedIn: false,
-  isPremium: false,
   loading: true,
   logout: async () => {},
   refreshUserData: async () => {},
@@ -29,32 +26,15 @@ const AuthContext = createContext<AuthContextType>({
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [isPremium, setIsPremium] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const loadUserData = async (firebaseUser: User | null) => {
     if (!firebaseUser) {
       setUser(null);
-      setIsPremium(false);
       return;
     }
 
     setUser(firebaseUser);
-
-    try {
-      const userRef = doc(db, 'users', firebaseUser.uid);
-      const userSnap = await getDoc(userRef);
-
-      if (userSnap.exists()) {
-        const userData = userSnap.data();
-        setIsPremium(!!userData?.isPremium);
-      } else {
-        setIsPremium(false);
-      }
-    } catch (error) {
-      console.log('Error loading user data:', error);
-      setIsPremium(false);
-    }
   };
 
   useEffect(() => {
@@ -65,7 +45,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       } catch (error) {
         console.log('Auth state error:', error);
         setUser(null);
-        setIsPremium(false);
       } finally {
         setLoading(false);
       }
@@ -78,7 +57,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       await signOut(auth);
       setUser(null);
-      setIsPremium(false);
     } catch (error) {
       console.log('Logout error:', error);
     }
@@ -100,7 +78,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       value={{
         user,
         isLoggedIn: !!user,
-        isPremium,
         loading,
         logout,
         refreshUserData,
