@@ -132,7 +132,7 @@ The latest version of this policy will be made publicly available through the ap
 
 For questions about privacy, account deletion, or the application, contact:
 
-**Developer:** [YOUR NAME]
-**Email:** [YOUR SUPPORT EMAIL]
+**Developer:** [MARJUK IBNA BELAYET]
+**Email:** [saadmarjukibnabelayet@gmail.com]
 **GitHub:** https://github.com/saadMarjuk/fish-disease-app
 
