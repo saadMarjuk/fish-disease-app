@@ -1,15 +1,138 @@
-Privacy Policy for Fish Disease Detection
+# Privacy Policy for Fish Disease Detection
 
-This application is an academic research prototype built for educational and demonstration purposes.
+**Last Updated: September 21, 2026**
 
-1. Data Collection & Use
+Fish Disease Detection is an **academic and educational project** created for learning, research, demonstration, and portfolio purposes.
 
-We collect email addresses solely to manage user accounts and enable login functionality using Firebase Authentication. No other personal data, location data, or device analytics are tracked.
+This application is **not operated as a commercial or business service**. Its purpose is to demonstrate fish-disease detection using image-based machine learning and related educational features.
 
-2. Data Protection & Sharing
+## 1. Information We Collect
 
-All login credentials are encrypted in transit and handled securely by Google Firebase. We do not sell, rent, trade, or share your account information with any third parties or advertising networks.
+When you create an account, the application may collect and store:
 
-3. Data Retention & Deletion
+* Your name
+* Your email address
+* Your Firebase user ID
+* Account creation information
 
-Your authentication data is kept only as long as your account remains active. If you wish to delete your account or remove your registered email address, you can contact the developer directly through this GitHub repository.
+This information is used only to create, authenticate, and manage your account.
+
+## 2. Fish Images and Disease Prediction
+
+When you select a fish image and request a disease prediction, the selected image is sent to an external machine-learning prediction service for analysis.
+
+The image is used only to generate the requested fish-disease prediction.
+
+Users should not upload images containing personal, private, sensitive, or unrelated information.
+
+## 3. Detection History
+
+For signed-in users, the application may store fish-disease prediction history in Google Firestore.
+
+Stored history may include:
+
+* Fish type
+* Predicted disease
+* Prediction confidence
+* Disease description
+* Treatment or advice
+* Prevention information
+* Date and time of the prediction
+
+This information is stored so users can review their previous prediction results.
+
+## 4. Firebase Services
+
+The application uses **Google Firebase** for:
+
+* User authentication
+* Account management
+* Firestore database storage
+* Detection history storage
+
+Authentication credentials and related information are handled through Firebase services.
+
+## 5. How We Use Your Information
+
+Information collected by the application is used only to:
+
+* Create and manage user accounts
+* Authenticate users
+* Provide fish-disease prediction
+* Display prediction results
+* Save and display prediction history
+* Support normal application functionality
+
+The application does not sell, rent, or trade personal information.
+
+## 6. Third-Party Services
+
+The application may use third-party services required for its functionality, including:
+
+* Google Firebase
+* An external machine-learning prediction service used for fish-disease detection
+
+Data required for these features may be transmitted to these services when the user uses the relevant functionality.
+
+## 7. Data Retention
+
+Account information and prediction history may remain stored while the user's account remains active.
+
+Users may permanently delete their account and associated stored data using the **Delete Account** option available inside the application.
+
+## 8. Account and Data Deletion
+
+Users can delete their account directly from:
+
+**Services / More → Delete Account**
+
+When account deletion is successfully completed, the application attempts to remove:
+
+* The user's Firebase Authentication account
+* The user's Firestore profile data
+* The user's stored detection history
+
+If a user cannot access the application and needs assistance with account deletion, they may contact the developer using the contact information listed below.
+
+## 9. Educational and Non-Commercial Purpose
+
+Fish Disease Detection was developed as an **educational and academic project**.
+
+It is not intended to operate as a commercial veterinary service, paid consultation platform, or business.
+
+Any demonstration veterinary profiles shown inside the application are sample data used for educational purposes and should not be treated as verified professional veterinary services.
+
+## 10. Veterinary and Educational Disclaimer
+
+Disease predictions, descriptions, treatment suggestions, and prevention information provided by the application are intended for **educational and informational purposes only**.
+
+The results should not be considered a substitute for professional veterinary diagnosis, treatment, or advice.
+
+For serious fish-health problems, users should consult a qualified veterinary or aquaculture professional.
+
+## 11. Data Security
+
+Reasonable technical measures are used to protect account and application data through Firebase authentication and database services.
+
+However, no internet-based system can guarantee complete security.
+
+## 12. Children's Privacy
+
+This application is not specifically designed to collect personal information from children.
+
+Users should follow applicable age requirements and local laws when using the application.
+
+## 13. Changes to This Privacy Policy
+
+This Privacy Policy may be updated if the application's features, data practices, or third-party services change.
+
+The latest version of this policy will be made publicly available through the application's official privacy-policy page.
+
+## 14. Contact
+
+For questions about privacy, account deletion, or the application, contact:
+
+**Developer:** [YOUR NAME]
+**Email:** [YOUR SUPPORT EMAIL]
+**GitHub:** https://github.com/saadMarjuk/fish-disease-app
+
