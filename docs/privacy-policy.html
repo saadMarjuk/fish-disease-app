@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Privacy Policy for the Fish Disease Detection application."
+  >
+
+  <title>Privacy Policy | Fish Disease Detection</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.75;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVBAR */
+
+    header {
+      width: 100%;
+      background: #000;
+      border-bottom: 1px solid #222;
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      max-width: 1150px;
+      margin: auto;
+      min-height: 75px;
+      padding: 0 25px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #999;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      color: #fff;
+    }
+
+    /* HERO */
+
+    .hero {
+      max-width: 1000px;
+      margin: auto;
+      padding: 90px 25px 50px;
+    }
+
+    .tag {
+      display: inline-block;
+
+      color: #aaa;
+      border: 1px solid #333;
+      border-radius: 30px;
+
+      padding: 8px 15px;
+      margin-bottom: 22px;
+
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 7vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -3px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: #777;
+    }
+
+    .hero-description {
+      max-width: 700px;
+      color: #999;
+      font-size: 17px;
+    }
+
+    .last-updated {
+      margin-top: 25px;
+
+      color: #666;
+      font-size: 13px;
+    }
+
+    /* POLICY CONTENT */
+
+    .policy-container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px 25px 90px;
+    }
+
+    .notice {
+      background: #080808;
+      border: 1px solid #292929;
+      border-left: 4px solid #fff;
+
+      padding: 25px;
+      margin-bottom: 45px;
+      border-radius: 8px;
+
+      color: #bbb;
+    }
+
+    .notice strong {
+      color: #fff;
+    }
+
+    .policy-section {
+      padding: 35px 0;
+      border-bottom: 1px solid #1d1d1d;
+    }
+
+    .section-number {
+      color: #555;
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .policy-section h2 {
+      font-size: 25px;
+      margin-bottom: 18px;
+    }
+
+    .policy-section p {
+      color: #aaa;
+      margin-bottom: 15px;
+    }
+
+    .policy-section ul {
+      margin: 15px 0 15px 22px;
+      color: #aaa;
+    }
+
+    .policy-section li {
+      margin-bottom: 8px;
+    }
+
+    .policy-section strong {
+      color: #fff;
+    }
+
+    /* CONTACT CARD */
+
+    .contact-card {
+      background: #080808;
+      border: 1px solid #222;
+      border-radius: 12px;
+
+      padding: 30px;
+      margin-top: 20px;
+    }
+
+    .contact-row {
+      margin-bottom: 12px;
+      color: #aaa;
+    }
+
+    .contact-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-row strong {
+      color: #fff;
+      margin-right: 8px;
+    }
+
+    .contact-row a {
+      color: #ccc;
+      border-bottom: 1px solid #555;
+    }
+
+    .contact-row a:hover {
+      color: #fff;
+      border-color: #fff;
+    }
+
+    /* BUTTONS */
+
+    .action-section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 0 25px 90px;
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .button {
+      display: inline-block;
+
+      padding: 13px 21px;
+      border-radius: 7px;
+
+      font-size: 14px;
+      font-weight: bold;
+
+      transition: 0.25s;
+    }
+
+    .button-primary {
+      background: #fff;
+      color: #000;
+      border: 1px solid #fff;
+    }
+
+    .button-primary:hover {
+      background: #ccc;
+      border-color: #ccc;
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: #fff;
+      border: 1px solid #444;
+    }
+
+    .button-secondary:hover {
+      border-color: #fff;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid #222;
+
+      padding: 35px 25px;
+
+      color: #666;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: #aaa;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 750px) {
+
+      .navbar {
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        letter-spacing: -2px;
+      }
+
+      .policy-section h2 {
+        font-size: 22px;
+      }
+
+      .action-section {
+        flex-direction: column;
+      }
+
+      .button {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header>
+
+    <nav class="navbar">
+
+      <a href="index.html" class="logo">
+        FISH.DETECT
+      </a>
+
+      <div class="nav-links">
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="index.html#developer">
+          Developer
+        </a>
+
+        <a href="privacy-policy.html" class="active">
+          Privacy Policy
+        </a>
+
+        <a href="account-deletion.html">
+          Account Deletion
+        </a>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+  <!-- HERO -->
+
+  <main>
+
+    <section class="hero">
+
+      <span class="tag">
+        Legal & Privacy
+      </span>
+
+      <h1>
+        Privacy
+        <span>Policy.</span>
+      </h1>
+
+      <p class="hero-description">
+        This page explains how Fish Disease Detection collects,
+        uses, stores, processes, and protects information while
+        providing its educational fish-disease prediction features.
+      </p>
+
+      <p class="last-updated">
+        Last Updated: September 24, 2026
+      </p>
+
+    </section>
+
+
+    <!-- POLICY -->
+
+    <section class="policy-container">
+
+      <div class="notice">
+
+        <strong>Fish Disease Detection</strong> is an academic
+        and educational project created for learning, research,
+        demonstration, and portfolio purposes.
+
+        <br><br>
+
+        This application is not operated as a commercial
+        veterinary service or business platform.
+
+      </div>
+
+
+      <!-- 01 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          01
+        </p>
+
+        <h2>
+          Information We Collect
+        </h2>
+
+        <p>
+          When you create an account, the application may collect
+          and store:
+        </p>
+
+        <ul>
+          <li>Your name</li>
+          <li>Your email address</li>
+          <li>Your Firebase user ID</li>
+          <li>Account creation information</li>
+        </ul>
+
+        <p>
+          This information is used to create, authenticate,
+          identify, and manage your application account.
+        </p>
+
+      </section>
+
+
+      <!-- 02 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          02
+        </p>
+
+        <h2>
+          Fish Images and Disease Prediction
+        </h2>
+
+        <p>
+          When you select a fish image and request a disease
+          prediction, the selected image is transmitted to an
+          external machine-learning prediction service for analysis.
+        </p>
+
+        <p>
+          The image is used for processing the disease prediction
+          requested by the user.
+        </p>
+
+        <p>
+          Users should not upload images containing personal,
+          private, sensitive, or unrelated information.
+        </p>
+
+      </section>
+
+
+      <!-- 03 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          03
+        </p>
+
+        <h2>
+          Detection History
+        </h2>
+
+        <p>
+          For signed-in users, Fish Disease Detection may store
+          prediction history using Google Firestore.
+        </p>
+
+        <p>
+          Stored detection information may include:
+        </p>
+
+        <ul>
+          <li>Fish type</li>
+          <li>Predicted disease</li>
+          <li>Prediction confidence</li>
+          <li>Disease description</li>
+          <li>Treatment or advice information</li>
+          <li>Prevention information</li>
+          <li>Date and time of prediction</li>
+        </ul>
+
+        <p>
+          This information is stored so users can view previous
+          prediction results from their account.
+        </p>
+
+      </section>
+
+
+      <!-- 04 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          04
+        </p>
+
+        <h2>
+          Firebase Services
+        </h2>
+
+        <p>
+          The application uses Google Firebase services for:
+        </p>
+
+        <ul>
+          <li>User authentication</li>
+          <li>Account management</li>
+          <li>Firestore database storage</li>
+          <li>Detection history storage</li>
+        </ul>
+
+        <p>
+          Authentication and related application data are handled
+          through Firebase services where applicable.
+        </p>
+
+      </section>
+
+
+      <!-- 05 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          05
+        </p>
+
+        <h2>
+          How We Use Your Information
+        </h2>
+
+        <p>
+          Information collected by the application is used only
+          for purposes related to application functionality,
+          including:
+        </p>
+
+        <ul>
+          <li>Creating and managing user accounts</li>
+          <li>Authenticating users</li>
+          <li>Providing fish-disease predictions</li>
+          <li>Displaying prediction results</li>
+          <li>Saving prediction history</li>
+          <li>Displaying previous detection results</li>
+          <li>Maintaining normal application functionality</li>
+        </ul>
+
+        <p>
+          Fish Disease Detection does not sell, rent, or trade
+          personal information.
+        </p>
+
+      </section>
+
+
+      <!-- 06 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          06
+        </p>
+
+        <h2>
+          Third-Party Services
+        </h2>
+
+        <p>
+          The application uses third-party services necessary
+          for its operation, including:
+        </p>
+
+        <ul>
+          <li>Google Firebase</li>
+          <li>
+            An external machine-learning prediction service
+            used for fish-disease analysis
+          </li>
+        </ul>
+
+        <p>
+          Data required to provide these features may be transmitted
+          to the relevant service when users use that functionality.
+        </p>
+
+      </section>
+
+
+      <!-- 07 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          07
+        </p>
+
+        <h2>
+          Data Retention
+        </h2>
+
+        <p>
+          Account information and stored prediction history may
+          remain available while the user's account remains active.
+        </p>
+
+        <p>
+          Users may request or perform account deletion as
+          described below.
+        </p>
+
+      </section>
+
+
+      <!-- 08 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          08
+        </p>
+
+        <h2>
+          Account and Data Deletion
+        </h2>
+
+        <p>
+          Users can delete their account directly from the
+          application by going to:
+        </p>
+
+        <p>
+          <strong>More → Delete Account</strong>
+        </p>
+
+        <p>
+          When account deletion is successfully completed,
+          the application attempts to remove:
+        </p>
+
+        <ul>
+          <li>The user's Firebase Authentication account</li>
+          <li>The user's Firestore profile data</li>
+          <li>The user's stored detection history</li>
+        </ul>
+
+        <p>
+          If a user cannot access the application, they may
+          request deletion through the public Account Deletion page.
+        </p>
+
+        <p>
+          <a href="account-deletion.html">
+            <strong>Open Account Deletion Page →</strong>
+          </a>
+        </p>
+
+      </section>
+
+
+      <!-- 09 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          09
+        </p>
+
+        <h2>
+          Educational and Non-Commercial Purpose
+        </h2>
+
+        <p>
+          Fish Disease Detection was developed as an academic
+          and educational project.
+        </p>
+
+        <p>
+          It is not intended to operate as a commercial veterinary
+          service, paid consultation platform, or professional
+          diagnostic service.
+        </p>
+
+        <p>
+          Demonstration veterinary profiles shown inside the
+          application are sample content used for educational
+          purposes and should not be treated as verified professional
+          veterinary services.
+        </p>
+
+      </section>
+
+
+      <!-- 10 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          10
+        </p>
+
+        <h2>
+          Veterinary and Educational Disclaimer
+        </h2>
+
+        <p>
+          Disease predictions, descriptions, treatment suggestions,
+          prevention information, and other content provided by the
+          application are intended for educational and informational
+          purposes only.
+        </p>
+
+        <p>
+          They should not be treated as a substitute for professional
+          veterinary diagnosis, treatment, or advice.
+        </p>
+
+        <p>
+          Users dealing with serious fish-health problems should
+          consult a qualified veterinary or aquaculture professional.
+        </p>
+
+      </section>
+
+
+      <!-- 11 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          11
+        </p>
+
+        <h2>
+          Data Security
+        </h2>
+
+        <p>
+          Reasonable technical measures are used to protect
+          application and account information through services
+          such as Firebase Authentication and Firestore.
+        </p>
+
+        <p>
+          However, no internet-connected system can guarantee
+          complete security.
+        </p>
+
+      </section>
+
+
+      <!-- 12 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          12
+        </p>
+
+        <h2>
+          Children's Privacy
+        </h2>
+
+        <p>
+          Fish Disease Detection is not specifically designed
+          to collect personal information from children.
+        </p>
+
+        <p>
+          Users should follow applicable age requirements and
+          local laws when using the application.
+        </p>
+
+      </section>
+
+
+      <!-- 13 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          13
+        </p>
+
+        <h2>
+          Changes to This Privacy Policy
+        </h2>
+
+        <p>
+          This Privacy Policy may be updated when the application's
+          features, third-party services, or data practices change.
+        </p>
+
+        <p>
+          The latest version will remain publicly available on
+          this page.
+        </p>
+
+      </section>
+
+
+      <!-- 14 -->
+
+      <section class="policy-section">
+
+        <p class="section-number">
+          14
+        </p>
+
+        <h2>
+          Contact
+        </h2>
+
+        <p>
+          For privacy questions, account deletion requests,
+          or questions regarding Fish Disease Detection,
+          contact the developer:
+        </p>
+
+        <div class="contact-card">
+
+          <div class="contact-row">
+            <strong>Developer:</strong>
+            MARJUK IBNA BELAYET
+          </div>
+
+          <div class="contact-row">
+
+            <strong>Email:</strong>
+
+            <a href="mailto:saadmarjukibnabelayet@gmail.com">
+              saadmarjukibnabelayet@gmail.com
+            </a>
+
+          </div>
+
+          <div class="contact-row">
+
+            <strong>GitHub:</strong>
+
+            <a
+              href="https://github.com/saadMarjuk/fish-disease-app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              github.com/saadMarjuk/fish-disease-app
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </section>
+
+
+    <!-- ACTION BUTTONS -->
+
+    <section class="action-section">
+
+      <a
+        href="index.html"
+        class="button button-primary"
+      >
+        Back to Home
+      </a>
+
+      <a
+        href="account-deletion.html"
+        class="button button-secondary"
+      >
+        Account Deletion
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>
+      © 2026 <strong>Fish Disease Detection</strong>.
+      Academic & Educational Project.
+    </p>
+
+    <p>
+      Developed by MARJUK IBNA BELAYET
+    </p>
+
+  </footer>
+
+</body>
+</html>

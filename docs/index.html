@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Fish Disease Detection - An academic machine learning project for fish disease detection."
+  >
+
+  <title>Fish Disease Detection</title>
+
+  <style>
+
+    /* =========================================
+       RESET
+    ========================================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+
+      background: #000;
+      color: #fff;
+
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    /* =========================================
+       NAVBAR
+    ========================================== */
+
+    header {
+      width: 100%;
+
+      background: rgba(0, 0, 0, 0.95);
+
+      border-bottom: 1px solid #222;
+
+      position: sticky;
+      top: 0;
+
+      z-index: 1000;
+
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar {
+      max-width: 1150px;
+
+      margin: auto;
+
+      min-height: 75px;
+
+      padding: 0 25px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 20px;
+
+      font-weight: 700;
+
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+
+      align-items: center;
+
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: #999;
+
+      font-size: 14px;
+
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+
+    /* =========================================
+       HERO
+    ========================================== */
+
+    .hero {
+      max-width: 1150px;
+
+      min-height: calc(100vh - 75px);
+
+      margin: auto;
+
+      padding: 90px 25px;
+
+      display: grid;
+
+      grid-template-columns: 1.2fr 0.8fr;
+
+      align-items: center;
+
+      gap: 80px;
+    }
+
+    .tag {
+      display: inline-block;
+
+      border: 1px solid #3a3a3a;
+
+      border-radius: 50px;
+
+      padding: 8px 16px;
+
+      margin-bottom: 25px;
+
+      color: #bbb;
+
+      font-size: 12px;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 7vw, 82px);
+
+      line-height: 1;
+
+      letter-spacing: -3px;
+
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span {
+      display: block;
+
+      color: #666;
+    }
+
+    .hero-description {
+      max-width: 650px;
+
+      color: #aaa;
+
+      font-size: 17px;
+
+      margin-bottom: 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 15px;
+    }
+
+
+    /* =========================================
+       BUTTONS
+    ========================================== */
+
+    .button {
+      display: inline-block;
+
+      padding: 13px 22px;
+
+      border-radius: 7px;
+
+      font-size: 14px;
+
+      font-weight: 700;
+
+      transition: 0.25s;
+    }
+
+    .button-primary {
+      background: #fff;
+
+      color: #000;
+
+      border: 1px solid #fff;
+    }
+
+    .button-primary:hover {
+      background: #d6d6d6;
+
+      border-color: #d6d6d6;
+    }
+
+    .button-secondary {
+      background: transparent;
+
+      color: #fff;
+
+      border: 1px solid #444;
+    }
+
+    .button-secondary:hover {
+      border-color: #fff;
+    }
+
+
+    /* =========================================
+       APP ICON - ORIGINAL COLOR
+    ========================================== */
+
+    .app-area {
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: center;
+    }
+
+    .app-icon-frame {
+      width: 330px;
+
+      height: 330px;
+
+      border-radius: 50%;
+
+      padding: 14px;
+
+      background: #080808;
+
+      border: 2px solid #333;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      box-shadow:
+        0 0 0 8px #050505,
+        0 18px 60px rgba(255, 255, 255, 0.06);
+    }
+
+    .app-icon {
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+      border-radius: 50%;
+
+      /*
+        NO grayscale filter.
+        Original icon colors remain.
+      */
+    }
+
+    .app-label {
+      margin-top: 25px;
+
+      padding: 9px 18px;
+
+      border-radius: 50px;
+
+      background: #fff;
+
+      color: #000;
+
+      font-size: 13px;
+
+      font-weight: 700;
+    }
+
+
+    /* =========================================
+       GENERAL SECTION
+    ========================================== */
+
+    .section {
+      max-width: 1150px;
+
+      margin: auto;
+
+      padding: 100px 25px;
+    }
+
+    .section-title {
+      font-size: 38px;
+
+      margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+      max-width: 720px;
+
+      color: #888;
+
+      margin-bottom: 45px;
+    }
+
+
+    /* =========================================
+       PROJECT CARDS
+    ========================================== */
+
+    .project-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+    }
+
+    .card {
+      min-height: 235px;
+
+      background: #070707;
+
+      border: 1px solid #222;
+
+      border-radius: 12px;
+
+      padding: 30px;
+
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+
+      border-color: #555;
+    }
+
+    .card-number {
+      color: #555;
+
+      font-size: 13px;
+
+      margin-bottom: 25px;
+    }
+
+    .card h3 {
+      font-size: 20px;
+
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #888;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================================
+       DEVELOPER SECTION
+    ========================================== */
+
+    .developer-section {
+      background: #050505;
+
+      border-top: 1px solid #222;
+
+      border-bottom: 1px solid #222;
+    }
+
+    .developer-container {
+      max-width: 1150px;
+
+      margin: auto;
+
+      padding: 110px 25px;
+
+      display: grid;
+
+      grid-template-columns: 0.75fr 1.25fr;
+
+      gap: 90px;
+
+      align-items: center;
+    }
+
+
+    /* =========================================
+       DEVELOPER PHOTO
+       ROUND + SHOW UPPER PART OF PHOTO
+    ========================================== */
+
+    .developer-photo-area {
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+    }
+
+    .developer-photo-frame {
+      width: 340px;
+
+      height: 340px;
+
+      border-radius: 50%;
+
+      padding: 8px;
+
+      background: #090909;
+
+      border: 2px solid #333;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 0 0 8px #0b0b0b,
+        0 20px 60px rgba(255, 255, 255, 0.05);
+    }
+
+    .developer-photo {
+      width: 100%;
+
+      height: 100%;
+
+      /*
+        Cover fills the circular frame.
+      */
+
+      object-fit: cover;
+
+      /*
+        IMPORTANT:
+        This moves the crop toward the TOP.
+        Your face / upper side of photo appears.
+      */
+
+      object-position: center 18%;
+
+      border-radius: 50%;
+
+      filter: grayscale(100%);
+    }
+
+
+    /* =========================================
+       DEVELOPER TEXT
+    ========================================== */
+
+    .developer-info .small-title {
+      color: #777;
+
+      text-transform: uppercase;
+
+      letter-spacing: 2px;
+
+      font-size: 12px;
+
+      margin-bottom: 12px;
+    }
+
+    .developer-info h2 {
+      font-size: 42px;
+
+      line-height: 1.15;
+
+      margin-bottom: 9px;
+    }
+
+    .developer-role {
+      color: #aaa;
+
+      margin-bottom: 26px;
+    }
+
+    .developer-description {
+      max-width: 650px;
+
+      color: #888;
+
+      margin-bottom: 30px;
+    }
+
+    .developer-links {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+    }
+
+    .developer-link {
+      padding: 10px 18px;
+
+      border: 1px solid #333;
+
+      border-radius: 7px;
+
+      font-size: 14px;
+
+      transition: 0.25s;
+    }
+
+    .developer-link:hover {
+      background: #fff;
+
+      color: #000;
+    }
+
+
+    /* =========================================
+       PRIVACY SECTION
+    ========================================== */
+
+    .legal-section {
+      text-align: center;
+    }
+
+    .legal-section h2 {
+      font-size: 36px;
+
+      margin-bottom: 12px;
+    }
+
+    .legal-section p {
+      max-width: 650px;
+
+      margin: 0 auto 30px;
+
+      color: #888;
+    }
+
+    .legal-buttons {
+      display: flex;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 15px;
+    }
+
+
+    /* =========================================
+       DISCLAIMER
+    ========================================== */
+
+    .disclaimer {
+      max-width: 900px;
+
+      margin: 0 auto 90px;
+
+      padding: 25px 30px;
+
+      border: 1px solid #222;
+
+      border-radius: 10px;
+
+      color: #888;
+
+      text-align: center;
+
+      font-size: 13px;
+    }
+
+    .disclaimer strong {
+      color: #fff;
+    }
+
+
+    /* =========================================
+       FOOTER
+    ========================================== */
+
+    footer {
+      border-top: 1px solid #222;
+
+      padding: 38px 25px;
+
+      color: #666;
+
+      text-align: center;
+
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: #aaa;
+    }
+
+
+    /* =========================================
+       TABLET
+    ========================================== */
+
+    @media (max-width: 850px) {
+
+      .navbar {
+        flex-direction: column;
+
+        justify-content: center;
+
+        gap: 13px;
+
+        padding-top: 15px;
+
+        padding-bottom: 15px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 15px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+
+        padding-top: 65px;
+
+        gap: 55px;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      .hero-description {
+        margin-left: auto;
+
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .app-area {
+        order: -1;
+      }
+
+      .app-icon-frame {
+        width: 280px;
+
+        height: 280px;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .developer-container {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+        gap: 55px;
+      }
+
+      .developer-photo-frame {
+        width: 290px;
+
+        height: 290px;
+      }
+
+      .developer-description {
+        margin-left: auto;
+
+        margin-right: auto;
+      }
+
+      .developer-links {
+        justify-content: center;
+      }
+    }
+
+
+    /* =========================================
+       PHONE
+    ========================================== */
+
+    @media (max-width: 500px) {
+
+      .navbar {
+        padding-left: 15px;
+
+        padding-right: 15px;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding-left: 20px;
+
+        padding-right: 20px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+
+        letter-spacing: -2px;
+      }
+
+      .app-icon-frame {
+        width: 230px;
+
+        height: 230px;
+
+        padding: 10px;
+      }
+
+      .developer-photo-frame {
+        width: 235px;
+
+        height: 235px;
+      }
+
+      .developer-info h2 {
+        font-size: 29px;
+      }
+
+      .section-title {
+        font-size: 30px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons .button {
+        width: 100%;
+
+        text-align: center;
+      }
+
+      .legal-buttons {
+        flex-direction: column;
+      }
+
+      .legal-buttons .button {
+        width: 100%;
+      }
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- ========================================
+       NAVBAR
+  ========================================= -->
+
+  <header>
+
+    <nav class="navbar">
+
+
+      <a
+        href="index.html"
+        class="logo"
+      >
+        FISH.DETECT
+      </a>
+
+
+      <div class="nav-links">
+
+
+        <a href="index.html">
+          Home
+        </a>
+
+
+        <a href="#about">
+          About
+        </a>
+
+
+        <a href="#developer">
+          Developer
+        </a>
+
+
+        <a href="privacy-policy.html">
+          Privacy Policy
+        </a>
+
+
+        <a href="account-deletion.html">
+          Account Deletion
+        </a>
+
+
+      </div>
+
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+
+    <!-- ========================================
+         HERO
+    ========================================= -->
+
+    <section class="hero">
+
+
+      <!-- LEFT SIDE -->
+
+      <div class="hero-text">
+
+
+        <span class="tag">
+          Academic Machine Learning Project
+        </span>
+
+
+        <h1>
+
+          Fish Disease
+
+          <span>
+            Detection.
+          </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+          An educational mobile application designed to explore
+          image-based machine learning for fish disease detection,
+          prediction history, and aquaculture awareness.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+
+          <a
+            href="#about"
+            class="button button-primary"
+          >
+            Explore Project
+          </a>
+
+
+          <a
+            href="https://github.com/saadMarjuk/fish-disease-app"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button button-secondary"
+          >
+            View GitHub
+          </a>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <!-- ========================================
+           RIGHT SIDE - ORIGINAL COLOR APP ICON
+      ========================================= -->
+
+      <div class="app-area">
+
+
+        <div class="app-icon-frame">
+
+
+          <img
+            src="image/icon.png"
+            alt="Fish Disease Detection App Icon"
+            class="app-icon"
+          >
+
+
+        </div>
+
+
+        <div class="app-label">
+          Fish Disease Detection
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ========================================
+         ABOUT
+    ========================================= -->
+
+    <section
+      class="section"
+      id="about"
+    >
+
+
+      <h2 class="section-title">
+        About the Project
+      </h2>
+
+
+      <p class="section-subtitle">
+
+        Fish Disease Detection was created as an academic,
+        educational, and portfolio project demonstrating
+        mobile development, cloud services, and machine-learning
+        integration.
+
+      </p>
+
+
+
+      <div class="project-grid">
+
+
+        <article class="card">
+
+
+          <div class="card-number">
+            01
+          </div>
+
+
+          <h3>
+            Image Detection
+          </h3>
+
+
+          <p>
+
+            Users can select fish images and submit them to
+            a machine-learning prediction service for disease
+            analysis.
+
+          </p>
+
+
+        </article>
+
+
+
+        <article class="card">
+
+
+          <div class="card-number">
+            02
+          </div>
+
+
+          <h3>
+            Firebase Integration
+          </h3>
+
+
+          <p>
+
+            Firebase Authentication and Firestore are used
+            for account management and storing user detection
+            history.
+
+          </p>
+
+
+        </article>
+
+
+
+        <article class="card">
+
+
+          <div class="card-number">
+            03
+          </div>
+
+
+          <h3>
+            Educational Purpose
+          </h3>
+
+
+          <p>
+
+            The application is designed for research,
+            demonstration, learning, and educational use rather
+            than professional veterinary diagnosis.
+
+          </p>
+
+
+        </article>
+
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ========================================
+         DEVELOPER SECTION
+    ========================================= -->
+
+    <section
+      class="developer-section"
+      id="developer"
+    >
+
+
+      <div class="developer-container">
+
+
+
+        <!-- ROUND DEVELOPER PHOTO -->
+
+        <div class="developer-photo-area">
+
+
+          <div class="developer-photo-frame">
+
+
+            <img
+              src="image/developer.jpeg"
+              alt="MARJUK IBNA BELAYET"
+              class="developer-photo"
+            >
+
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- DEVELOPER DETAILS -->
+
+        <div class="developer-info">
+
+
+          <p class="small-title">
+            About the Developer
+          </p>
+
+
+          <h2>
+            MARJUK IBNA BELAYET
+          </h2>
+
+
+          <p class="developer-role">
+            Software Developer & Computer Science Student
+          </p>
+
+
+          <p class="developer-description">
+
+            I developed Fish Disease Detection as an academic
+            and educational project to explore how software
+            engineering, mobile development, cloud technologies,
+            and machine learning can be applied to aquaculture
+            and fish-health related problems.
+
+          </p>
+
+
+
+          <div class="developer-links">
+
+
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=saadmarjukibnabelayet@gmail.com&su=Fish%20Disease%20Detection%20Inquiry"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="developer-link"
+>
+  Email
+</a>
+
+
+            <a
+              href="https://github.com/saadMarjuk"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="developer-link"
+            >
+              GitHub
+            </a>
+
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ========================================
+         PRIVACY
+    ========================================= -->
+
+    <section class="section legal-section">
+
+
+      <h2>
+        Privacy & Account Control
+      </h2>
+
+
+      <p>
+
+        Learn how information is handled and how users can
+        permanently delete their accounts and associated data.
+
+      </p>
+
+
+
+      <div class="legal-buttons">
+
+
+        <a
+          href="privacy-policy.html"
+          class="button button-primary"
+        >
+          Privacy Policy
+        </a>
+
+
+        <a
+          href="account-deletion.html"
+          class="button button-secondary"
+        >
+          Delete Account
+        </a>
+
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ========================================
+         DISCLAIMER
+    ========================================= -->
+
+    <div class="disclaimer">
+
+
+      <strong>
+        Important:
+      </strong>
+
+
+      Fish Disease Detection is an academic and educational
+      application. Disease predictions and treatment information
+      provided by the application should not replace professional
+      veterinary or aquaculture advice.
+
+
+    </div>
+
+
+  </main>
+
+
+
+  <!-- ========================================
+       FOOTER
+  ========================================= -->
+
+  <footer>
+
+
+    <p>
+
+      © 2026
+
+      <strong>
+        Fish Disease Detection
+      </strong>.
+
+      Academic & Educational Project.
+
+    </p>
+
+
+    <p>
+      Developed by MARJUK IBNA BELAYET
+    </p>
+
+
+  </footer>
+
+
+</body>
+
+</html>
